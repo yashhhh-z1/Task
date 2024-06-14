@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         ECR_REPOSITORY_NAME = 'task_ecr'
-        ECR_URI = 'admin.dkr.ecr.your-region.amazonaws.com'
+        ECR_URI = 'admim-task_ecr.dkr.ecr.ap-south-1.amazonaws.com'
         AWS_REGION = 'ap-south-1'
     }
 
@@ -25,7 +25,7 @@ pipeline {
         stage('Push Docker Image to ECR') {
             steps {
                 script {
-                    docker.withRegistry("https://${env.ECR_URI}", 'ecr:aws-credentials-id') {
+                    docker.withRegistry("https://${env.ECR_URI}", 'ecr:aws-ecr_credentials') {
                         dockerImage.push()
                     }
                 }
